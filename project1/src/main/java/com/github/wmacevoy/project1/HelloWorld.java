@@ -15,7 +15,7 @@ public class HelloWorld {
 
     public static void main(String[] args) throws Exception {
         HelloWorld helloWorld = new HelloWorld();
-        helloWorld.sayHello();
+        helloWorld.printMessage();
     }
 
     private String message = "";
@@ -32,22 +32,22 @@ public class HelloWorld {
     /**
      * Set the value of message
      *
-     * @param message new value of message
+     * @param _message new value of message
      */
-    public void setMessage(String message) {
-        if (message != null) {
-            this.message = message;
+    public void setMessage(String _message) {
+        if (_message != null) {
+            message = _message;
         } else {
             throw new UnsupportedOperationException("message cannot be null");
         }
     }
 
-    public void sayHello(PrintStream out) {
-        out.println(getMessage());
+    public void printMessage(PrintStream out) {
+        out.println("message: " + getMessage());
     }
 
-    public void sayHello() {
-        sayHello(System.out);
+    public void printMessage() {
+        HelloWorld.this.printMessage(System.out);
     }
 
 }

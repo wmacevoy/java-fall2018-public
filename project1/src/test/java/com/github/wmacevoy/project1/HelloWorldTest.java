@@ -41,30 +41,6 @@ public class HelloWorldTest {
     }
 
     /**
-     * Test of main method, of class HelloWorld.
-     */
-    @org.junit.Test
-    public void testMain() throws Exception {
-        System.out.println("main");
-        String[] args = null;
-
-        // https://stackoverflow.com/questions/2169330/java-junit-capture-the-standard-input-output-for-use-in-a-unit-test
-        PrintStream saveOut = System.out;
-        ByteArrayOutputStream myOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(myOut));
-        try {
-            String expect = "";
-
-            HelloWorld.main(args);
-            String result = myOut.toString();
-            assertEquals(expect, result);
-
-        } finally {
-            System.setOut(saveOut);
-        }
-    }
-
-    /**
      * Test of getMessage method, of class HelloWorld.
      */
     @org.junit.Test
@@ -102,22 +78,34 @@ public class HelloWorldTest {
     }
 
     /**
+     * Test of setMessage method, of class HelloWorld.
+     */
+    @org.junit.Test(expected = UnsupportedOperationException.class)
+    public void testSetMessageNull() {
+        System.out.println("setMessage");
+        HelloWorld instance = new HelloWorld();
+        assertEquals("", instance.getMessage());
+        String message = null;
+        instance.setMessage(message);
+    }
+
+    /**
      * Test of sayHello method, of class HelloWorld.
      */
     @org.junit.Test
-    public void testSayHello_PrintStream() {
-        System.out.println("sayHello");
+    public void testPrintMessage_PrintStream() {
+        System.out.println("printMessage");
         HelloWorld instance = new HelloWorld();
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(buffer);
 
-        String message = "test!";
-                
-        String expect = "test!" + System.lineSeparator();
+        String message = "test123";
 
-        instance.setMessage(expect);
-        instance.sayHello(out);
+        String expect = "message: test123" + System.lineSeparator();
+
+        instance.setMessage(message);
+        instance.printMessage(out);
         String result = buffer.toString();
         assertEquals(expect, result);
     }
@@ -126,12 +114,23 @@ public class HelloWorldTest {
      * Test of sayHello method, of class HelloWorld.
      */
     @org.junit.Test
-    public void testSayHello_0args() {
-        System.out.println("sayHello");
+    public void testPrintMessage_0args() {
+        System.out.println("printMessage");
         HelloWorld instance = new HelloWorld();
-        instance.sayHello();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        PrintStream saveOut = System.out;
+        ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(myOut));
+        try {
+            String message = "test 1 2 3";
+            instance.setMessage(message);
+            String expect = "message: test 1 2 3" + System.lineSeparator();
+            instance.printMessage();
+            String result = myOut.toString();
+            assertEquals(expect, result);
+        } finally {
+            System.setOut(saveOut);
+        }
     }
 
 }
