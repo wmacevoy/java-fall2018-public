@@ -24,4 +24,12 @@ public class Market {
             System.out.println("buy " + item.name + " for only " + discountPrice + " cents");
         }
     }
+
+    boolean hasItemByName(String name) {
+        return items.hasItemByName(name);
+    }
+
+    Cart getCartFor(Customer customer) {
+        return new Cart(this, customer);
+    }
 }

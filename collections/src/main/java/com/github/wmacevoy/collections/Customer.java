@@ -13,5 +13,15 @@ public class Customer {
     int orderNumber;
     String name;
     int moneyInCents;
+    Customer(String _name, int _moneyInCents) {
+        name= _name;
+        moneyInCents = _moneyInCents;
+    }
+
+    boolean hasItemByName(String name) {
+        return items.hasItemByName(name);
+    }
+    
+    Items items = new Items();
 }
 

@@ -16,4 +16,5 @@ class Item {
       name = _name;
       priceInCents = _priceInCents;
   }
+  // booleen equals(Object o) { return this == o; }
 }

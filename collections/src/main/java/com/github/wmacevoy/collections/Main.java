@@ -19,7 +19,7 @@ public class Main {
         Market market = new Market();
         market.addItem("cheese", 100);
         market.addItem("solar power strip", 33);
-        market.printSales(10);  
+        market.printSales(10);
     }
     
 }
