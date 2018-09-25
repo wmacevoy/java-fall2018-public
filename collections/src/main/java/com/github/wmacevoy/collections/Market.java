@@ -10,6 +10,7 @@ package com.github.wmacevoy.collections;
  * @author wmacevoy
  */
 public class Market {
+    Customers customers = new Customers();
     Items items = new Items();
 //    Registers registers;
 //    Customers customers;
