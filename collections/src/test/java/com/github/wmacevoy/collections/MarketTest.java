@@ -58,6 +58,8 @@ public class MarketTest {
         market.addItem("solar power strips",79);
         
         Customer alice = new Customer("alice", 250);
+        market.customers.add(alice);
+        
         Cart cart = market.getCartFor(alice);
         cart.addItem("salt");
         cart.addItem("solar power strips");
