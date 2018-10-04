@@ -36,19 +36,17 @@ public class ListSpeedTestTest {
     @After
     public void tearDown() {
     }
-
-    @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
     @Test
     public void testCollectionsSortSpeed() {
         ListSpeedTest test =  new ListSpeedTest();
-        test.setAction(new ListSorter());
+        test.setAction(new SortAction());
         test.start();
         test.waitTilFinish();
+        String result = test.outcome();
+        System.out.println("array time = " + test.arrayWorker.millis);
+        System.out.println("linkedlist  time = " + test.linkedWorker.millis);
+        assertTrue(result.startsWith("array"));
     }
     
 }
