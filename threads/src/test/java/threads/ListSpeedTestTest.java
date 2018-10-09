@@ -49,4 +49,39 @@ public class ListSpeedTestTest {
         assertTrue(result.startsWith("array"));
     }
     
+    @Test
+    public void testCollectionsSortSerialSpeed() {
+        ListSpeedTest test =  new ListSpeedTest(
+                    new SerializedAction(new SortAction()),
+                    2_000_000);
+        test.start();
+        test.waitTilFinish();
+        String result = test.outcome();
+        System.out.println("array time = " + test.arrayWorker.millis);
+        System.out.println("linkedlist  time = " + test.linkedWorker.millis);
+        assertTrue(result.startsWith("array"));
+    }
+    @Test
+    public void testCollectionsRandomizeSpeed() {
+        ListSpeedTest test =  new ListSpeedTest();
+        test.setAction(new RandomizeAction(1_000_000));
+        test.start();
+        test.waitTilFinish();
+        String result = test.outcome();
+        System.out.println("array time = " + test.arrayWorker.millis);
+        System.out.println("linkedlist  time = " + test.linkedWorker.millis);
+        assertTrue(result.startsWith("array"));
+    }
+
+    @Test
+    public void testCollectionsLambda() {
+        ListSpeedTest test =  new ListSpeedTest();
+        test.setAction(list->list.get(list.size()/2));
+        test.start();
+        test.waitTilFinish();
+        String result = test.outcome();
+        System.out.println("array time = " + test.arrayWorker.millis);
+        System.out.println("linkedlist  time = " + test.linkedWorker.millis);
+        assertTrue(result.startsWith("array"));
+    }
 }

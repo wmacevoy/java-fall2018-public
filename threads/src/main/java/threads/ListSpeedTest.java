@@ -13,10 +13,25 @@ import java.util.LinkedList;
  * @author wmacevoy
  */
 public class ListSpeedTest {
+    
     Action action;
+    int size;
+    
+    ListSpeedTest(Action _action, int _size) {
+        action = _action;
+        size = _size;
+    }
+    
+    public static final int DEFAULT_SIZE = 1_000_000;
+    
+    ListSpeedTest() {
+        action = null;
+        size = DEFAULT_SIZE;
+    }
+
     ArrayList<String> arrayList = new ArrayList<String>();
     LinkedList<String> linkedList = new LinkedList<String>();
-    void setAction(SortAction _action) {
+    void setAction(Action _action) {
         action = _action;
     }
 
@@ -24,7 +39,7 @@ public class ListSpeedTest {
     TestWorker linkedWorker;
     
     void start() {
-        Action rando = new RandomizeAction(10_000_000);
+        Action rando = new RandomizeAction(size);
         rando.actOn(arrayList);
         rando.actOn(linkedList);
         arrayWorker = new TestWorker(arrayList, action);
