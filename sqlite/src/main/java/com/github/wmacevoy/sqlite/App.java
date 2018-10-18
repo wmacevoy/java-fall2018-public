@@ -22,13 +22,10 @@ import java.sql.Statement;
  */
 public class App {
 
-    public static String DB = "tests.db";
-    public static String URL = "jdbc:sqlite:" + DB;
-
     private Connection connect() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(URL);
+            conn = DriverManager.getConnection(DB.DEFAULT_URL);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
